@@ -1,7 +1,9 @@
 import os
 import cv2
+import requests
 import numpy as np
 from PIL import Image
+from io import BytesIO
 
 from keras.callbacks import ModelCheckpoint
 from keras.callbacks import EarlyStopping
@@ -59,6 +61,15 @@ class ModelManager:
         return image
 
     @staticmethod
+    def fit_transform_url(url: str) -> object:
+        response = requests.get(url)
+        image = Image.open(BytesIO(response.content)).convert('L')
+        image = np.asarray(image.resize((48, 48)), dtype=np.uint8)
+        image = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
+        image = image.reshape(1, 48, 48, 3)
+        return image
+
+    @staticmethod
     def show_image(image: object, inference: int) -> object:
         """
         :param image: np array with the image used in prediction
@@ -74,6 +85,18 @@ class ModelManager:
         :type path_file: location image to prediction
         """
         image = self.fit_transform(path_file)
+        inference = self.models.predict(image).astype(np.int)[0]
+        predict_age = inference.astype(np.int)[0]
+        if verbose:
+            self.show_image(image, predict_age)
+        return predict_age
+
+    def predict_url(self, url: str, verbose: bool = False) -> int:
+        """
+        :param verbose: show the prediction and image in plot
+        :type url: location image (url)
+        """
+        image = self.fit_transform_url(url)
         inference = self.models.predict(image).astype(np.int)[0]
         predict_age = inference.astype(np.int)[0]
         if verbose:
