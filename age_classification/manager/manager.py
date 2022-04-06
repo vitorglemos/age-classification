@@ -31,7 +31,7 @@ class ModelManager:
                                          monitor='val_loss', save_best_only=True, mode='min')
         self.early_stop = EarlyStopping(monitor='val_loss', mode='min', patience=10, verbose=1)
 
-    def load_model(self, weights_path: str):
+    def load_model(self, weights_path: str = "age_classification/manager/weights.h5"):
         """
         :param weights_path: neural network weights location
         """
@@ -97,6 +97,17 @@ class ModelManager:
         :type url: location image (url)
         """
         image = self.fit_transform_url(url)
+        inference = self.models.predict(image).astype(np.int)[0]
+        predict_age = inference.astype(np.int)[0]
+        if verbose:
+            self.show_image(image, predict_age)
+        return predict_age
+
+    def predict_image(self, image: object, verbose: bool = False) -> int:
+        """
+        :param image: image array
+        :param verbose: show the prediction and image in plot
+        """
         inference = self.models.predict(image).astype(np.int)[0]
         predict_age = inference.astype(np.int)[0]
         if verbose:
