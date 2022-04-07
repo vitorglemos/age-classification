@@ -45,4 +45,23 @@ pip3 install git+https://github.com/vitorglemos/age-classification.git
 
 Se preferir, é possível testar o projeto online por meio das instruções a seguir:
 
+# Estrutura
+```
+age_classification
+├── __init__
+├── __version__
+└── manager
+│    ├── __init__
+│    ├── manager.py
+│    ├── weights.h5
+│    └── model
+│        ├── __init__
+│        └── model_sample.py
+├── LICENSE
+├── README.md
+├── requirements.txt
+├── run.py
+└── setup.py
+
+```
 # Utilização (API)
