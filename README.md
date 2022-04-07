@@ -24,6 +24,18 @@ desenvolvido para extrair rostos em imagens utilizando o algoritmo de  Haar casc
 - [![python](https://badges.aleen42.com/src/python.svg)]() - Python 3.7
 - ![nVIDIA](https://img.shields.io/badge/nVIDIA-%2376B900.svg?style=for-the-badge&logo=nVIDIA&logoColor=white) - CUDA Toolkit 
 
+# Rede Neural
+Para este projeto, foi utilizado uma rede neural convolucional VGG16
+<img src="https://miro.medium.com/max/1400/0*xurYLT8UBpFKPNQA">
+
+Referência da Imagem: https://medium.com/@mygreatlearning/what-is-vgg16-introduction-to-vgg16-f2d63849f615
+
+Caso queira utilizar outra rede convolucional, você pode modificar o arquivo **manager/manager.py** e substituir por outra rede em:
+```
+self.models = vgg16_model_v0()
+```
+Além disso, os novos pesos podem ser carregados usando a função **load_model**
+
 # Instalação Rápida
 
 Caso prefira explorar a biblioteca, é possível realizar a instalação do projeto por meio do seguinte comando:
