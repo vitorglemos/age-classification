@@ -65,3 +65,11 @@ age_classification
 
 ```
 # Utilização (API)
+
+Para testar a API, basta enviar o link da url com a imagem utilizando esse endereço:
+- Acesse: https://thawing-reaches-91892.herokuapp.com/v1/home
+- No campo em branco insira uma url e clique em **Enviar**, Imagem de exemplo: https://melhorcomsaude.com.br/wp-content/uploads/2017/03/genetica_rostos_filhos-500x282.jpg
+- Se tudo ocorrer bem, o resultado:
+
+
+
